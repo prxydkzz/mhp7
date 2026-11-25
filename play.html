@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>Kuis Rebutan - HP Tim</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔔</text></svg>">
+<style>
+  :root { --bg:#0f172a; --card:#1e293b; --line:#334155; --text:#f8fafc; --muted:#94a3b8; --gold:#f59e0b; --good:#22c55e; --bad:#ef4444; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,"Segoe UI",sans-serif; padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom); }
+  [hidden] { display:none !important; }
+  .wrap { max-width:520px; margin:0 auto; display:flex; flex-direction:column; gap:12px; padding:12px 0 24px; }
+  h1 { font-size:1.15rem; margin:4px 0 0; text-align:center; } h2 { font-size:1.05rem; margin:0 0 8px; }
+  .status { display:flex; gap:8px; align-items:center; justify-content:center; color:var(--muted); font-size:.85rem; }
+  .dot { width:10px; height:10px; border-radius:50%; background:var(--bad); } .dot.on { background:var(--good); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px; }
+  .muted { color:var(--muted); font-size:.85rem; }
+  input[type=text] { width:100%; font:inherit; font-size:1.1rem; padding:12px; border-radius:12px; border:1px solid var(--line); background:#0b1220; color:var(--text); }
+  #codeInput { font-size:1.8rem; letter-spacing:6px; text-align:center; text-transform:uppercase; }
+  button { font:inherit; font-weight:800; border:0; border-radius:14px; cursor:pointer; color:#fff; background:#334155; }
+  button:disabled { opacity:.35; cursor:not-allowed; }
+  .primary { width:100%; padding:14px; margin-top:10px; font-size:1.05rem; background:var(--gold); color:#1a1300; }
+  .A { background:linear-gradient(135deg,#e0455f,#a62a42); } .B { background:linear-gradient(135deg,#2d8cff,#1a58b8); } .C { background:linear-gradient(135deg,#16c784,#0e8a5d); }
+  .pick { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .pickBtn { padding:12px 4px; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:.75rem; }
+  .pickBtn b { font-size:2rem; line-height:1; } .pickBtn.mine { outline:3px solid #fff; } .pickBtn.taken { background:#0b1220; color:var(--muted); border:2px dashed var(--line); }
+  .sounds { display:grid; gap:8px; }
+  .snd { display:flex; align-items:center; gap:10px; padding:10px 12px; background:#0b1220; border:2px solid var(--line); border-radius:12px; text-align:left; font-weight:700; width:100%; }
+  .snd .ic { font-size:1.5rem; } .snd .lb { flex:1; } .snd .tag { font-size:.75rem; color:var(--muted); font-weight:600; }
+  .snd.sel { border-color:var(--gold); } .snd.mine { border-color:var(--good); } .snd:disabled { opacity:.35; }
+  .badge { text-align:center; font-weight:900; font-size:1.15rem; padding:8px; border-radius:12px; color:#fff; word-break:break-word; }
+  .qno { color:var(--muted); font-size:.8rem; font-weight:700; text-align:center; }
+  .question { text-align:center; font-weight:800; font-size:1.15rem; margin:4px 0; }
+  .msg { text-align:center; font-weight:900; font-size:1.1rem; padding:12px; border-radius:14px; background:#0b1220; border:2px solid var(--line); }
+  .msg.mine { border-color:var(--gold); color:var(--gold); animation:pulse 1s infinite; }
+  @keyframes pulse { 50% { box-shadow:0 0 0 8px #f59e0b33; } }
+  #buzz { min-height:200px; font-size:2.8rem; border-radius:28px; box-shadow:0 10px 0 #0008; transition:.06s; }
+  #buzz:active:not(:disabled) { transform:translateY(8px); box-shadow:0 2px 0 #0008; }
+  #buzz:disabled { opacity:.3; box-shadow:none; filter:grayscale(.6); }
+  .optbtn { display:flex; gap:12px; align-items:center; width:100%; padding:16px; margin-bottom:8px; font-size:1.1rem; text-align:left; background:#0b1220; border:2px solid var(--line); }
+  .optbtn b { color:var(--gold); font-size:1.4rem; } .optbtn.elim { text-decoration:line-through; } .optbtn.right { border-color:var(--good); background:#052e16; } .optbtn.wrong { border-color:var(--bad); background:#450a0a; }
+  .wait { text-align:center; color:var(--gold); font-weight:800; padding:6px; }
+  .lboard { display:flex; flex-direction:column; gap:6px; }
+  .row { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px; background:#0b1220; border:2px solid transparent; font-weight:700; }
+  .row.me { border-color:#fff; } .row .rk { width:36px; font-size:1.2rem; } .row .nm { flex:1; word-break:break-word; } .row .sc { font-size:1.3rem; font-weight:900; }
+  .toast { position:fixed; left:12px; right:12px; bottom:calc(14px + env(safe-area-inset-bottom)); background:#7f1d1d; color:#fff; padding:12px; border-radius:12px; text-align:center; font-weight:700; z-index:5; }
+  pre { font:inherit; font-size:1.1rem; line-height:1.8; text-align:center; white-space:pre-wrap; margin:0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔔 Kuis Rebutan Tim</h1>
+  <div class="status"><span class="dot" id="dot"></span><span id="statusText">Belum terhubung</span></div>
+
+  <section class="card" id="connectView">
+    <p class="muted" style="text-align:center;margin:0 0 10px">Masukkan kode yang tampil di layar utama</p>
+    <input id="codeInput" type="text" maxlength="5" autocomplete="off" autocapitalize="characters" placeholder="KODE">
+    <button class="primary" id="connectBtn">Hubungkan</button>
+  </section>
+
+  <div id="setupView" hidden style="display:flex;flex-direction:column;gap:12px">
+    <section class="card">
+      <h2>1. Pilih tim</h2>
+      <div class="pick" id="teamPick"></div>
+      <p class="muted" id="teamNote" style="margin:8px 0 0">Satu tim hanya untuk 1 HP. Kamu masih bisa pindah tim sebelum mengunci suara.</p>
+    </section>
+    <section class="card" id="nameBox" hidden>
+      <h2>2. Nama tim</h2>
+      <input id="nameInput" type="text" maxlength="20" autocomplete="off" placeholder="Nama tim">
+      <p class="muted" style="margin:6px 0 0">Tersimpan otomatis saat kamu mengetik.</p>
+    </section>
+    <section class="card" id="soundBox" hidden>
+      <h2>3. Suara tim (buzzer)</h2>
+      <p class="muted" style="margin:0 0 8px" id="soundNote">Ketuk untuk mendengarkan dulu, lalu konfirmasi. Setelah dikonfirmasi tidak bisa diganti.</p>
+      <div class="sounds" id="sounds"></div>
+      <button class="primary" id="confirmSound" hidden></button>
+    </section>
+    <div class="card" id="waitBox" hidden><p style="margin:0;text-align:center;font-weight:800">✅ Siap! Menunggu operator memulai permainan…</p></div>
+  </div>
+
+  <div id="gameView" hidden style="display:flex;flex-direction:column;gap:12px">
+    <div class="badge" id="badge"></div>
+    <div class="card"><div class="qno" id="qno"></div><div class="question" id="question"></div></div>
+    <div class="msg" id="msg"></div>
+    <div class="card" id="optBox" hidden><div class="wait" id="optWait"></div><div id="optList"></div></div>
+    <button id="buzz" disabled>BUZZ!</button>
+    <div class="card"><h2>🏅 Leaderboard</h2><div class="muted" id="myRank" style="margin:-4px 0 8px"></div><div class="lboard" id="board"></div></div>
+    <div class="card" id="endBox" hidden><pre id="finalText"></pre></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  const PREFIX = "kuis3tim-";
+  const STORE = "k3_player_v2";
+  const RETRY_MS = 2000;
+  const PREVIEW_MS = 4000;
+  const TEAMS = ["A", "B", "C"];
+  const SOUNDS = [
+    { id: "bus",  label: "Klakson Bus",       icon: "🚌", file: "bus-honk-meme.mp3" },
+    { id: "raja", label: "Raja & Ratu Masuk", icon: "👑", file: "king-queen-entrance.mp3" },
+    { id: "bel",  label: "Bel Pintu",         icon: "🔔", file: "ring-doorbell-sound-mp3.mp3" },
+    { id: "gong", label: "Gong Cina",         icon: "🥁", file: "shinese-gong.mp3" },
+    { id: "rizz", label: "Rizz (Weeknd)",     icon: "😎", file: "the-weeknd-rizzz.mp3" },
+    { id: "pipa", label: "Pipa Besi Klang",   icon: "🔧", file: "metal-pipe-clang.mp3" },
+    { id: "hp",   label: "HP Berdering",      icon: "📱", file: "yo-phone-is-ringing-your-phone-was-ringing.mp3" }
+  ];
+  const $ = (id) => document.getElementById(id);
+
+  let peer = null, conn = null, roomCode = "", retryTimer = null;
+  let state = null, you = { team: null };
+  let selSound = null, nameTimer = null, toastTimer = null, previewTimer = null, previewAudio = null;
+  let buzzSent = false, answerSent = false, turnKey = "", unlockAt = 0, tick = null;
+
+  /* ---------- Identitas HP (agar 1 tim = 1 HP dan bisa tersambung ulang) ---------- */
+  function getPid() {
+    let pid = "";
+    try { pid = localStorage.getItem("k3_pid") || ""; } catch { /* abaikan */ }
+    if (!/^[\w-]{6,64}$/.test(pid)) {
+      pid = "p" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+      try { localStorage.setItem("k3_pid", pid); } catch { /* abaikan */ }
+    }
+    return pid;
+  }
+  const pid = getPid();
+
+  function setStatus(on, text) { $("dot").classList.toggle("on", on); $("statusText").textContent = text; }
+  function toast(text) {
+    const t = $("toast"); t.textContent = text; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 3200);
+  }
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function send(msg) { if (conn && conn.open) conn.send(msg); }
+
+  /* ---------- Koneksi ---------- */
+  function connectToHost(raw) {
+    roomCode = String(raw || "").toUpperCase().trim();
+    if (roomCode.length < 5) return setStatus(false, "Kode harus 5 karakter");
+    setStatus(false, "Menghubungkan…");
+    clearTimeout(retryTimer);
+    if (peer) peer.destroy();
+    peer = new Peer();
+    peer.on("open", () => {
+      conn = peer.connect(PREFIX + roomCode, { reliable: true });
+      conn.on("open", onOpen);
+      conn.on("data", onData);
+      conn.on("close", onLost);
+      conn.on("error", onLost);
+    });
+    peer.on("error", (err) => {
+      setStatus(false, err.type === "peer-unavailable" ? "Kode tidak ditemukan. Cek layar utama." : "Gangguan: " + err.type);
+      scheduleRetry();
+    });
+  }
+  function onOpen() {
+    setStatus(true, "Terhubung ke ruangan " + roomCode);
+    $("connectView").hidden = true;
+    send({ type: "hello", pid });
+    try { localStorage.setItem(STORE, roomCode); } catch { /* abaikan */ }
+    try { navigator.wakeLock?.request("screen").catch(() => {}); } catch { /* tidak wajib */ }
+  }
+  function onLost() { setStatus(false, "Terputus. Mencoba lagi…"); scheduleRetry(); }
+  function scheduleRetry() { clearTimeout(retryTimer); retryTimer = setTimeout(() => connectToHost(roomCode), RETRY_MS); }
+
+  /* ---------- Pesan dari host ---------- */
+  function onData(m) {
+    if (!m) return;
+    if (m.type === "err") { toast(m.text); answerSent = false; if (state) render(); return; }
+    if (m.type !== "state" || !m.s) return;
+    const prev = state;
+    state = m.s; you = m.you || { team: null };
+    buzzSent = false;
+    const key = state.phase + "|" + state.qNum + "|" + state.turn + "|" + state.eliminated.length;
+    if (key !== turnKey) {
+      turnKey = key; answerSent = false;
+      if (state.phase === "answering" && state.turn === you.team) { unlockAt = Date.now() + state.delayMs; startTick(); }
+      if (prev && prev.phase !== state.phase && state.phase === "reveal") navigator.vibrate?.([80, 60, 80]);
+    }
+    render();
+  }
+  function startTick() {
+    clearInterval(tick);
+    tick = setInterval(() => {
+      renderOptions();
+      if (Date.now() >= unlockAt) { clearInterval(tick); tick = null; }
+    }, 100);
+  }
+
+  /* ---------- Layar persiapan (lobby) ---------- */
+  function playPreview(file) {
+    try {
+      if (previewAudio) previewAudio.pause();
+      clearTimeout(previewTimer);
+      previewAudio = new Audio(file);
+      const p = previewAudio.play();
+      if (p && p.catch) p.catch(() => {});
+      previewTimer = setTimeout(() => { try { previewAudio.pause(); } catch { /* abaikan */ } }, PREVIEW_MS);
+    } catch { /* abaikan */ }
+  }
+  function renderSetup(s) {
+    const me = you.team;
+    const locked = !!(me && s.teams[me].locked);
+
+    $("teamPick").replaceChildren(...TEAMS.map((t) => {
+      const info = s.teams[t];
+      const mine = me === t;
+      const b = el("button", "pickBtn " + (mine || !info.taken ? t : "taken") + (mine ? " mine" : ""));
+      b.append(el("b", null, t), el("span", null, mine ? "Tim kamu ✓" : info.taken ? "Dipakai HP lain" : "Kosong"));
+      b.disabled = (info.taken && !mine) || (locked && !mine);
+      b.addEventListener("click", () => { if (!mine) send({ type: "claim", team: t }); });
+      return b;
+    }));
+    $("teamNote").textContent = locked
+      ? "Suara sudah dikunci, jadi tim kamu tidak bisa diganti lagi."
+      : "Satu tim hanya untuk 1 HP. Kamu masih bisa pindah tim sebelum mengunci suara.";
+
+    $("nameBox").hidden = !me;
+    $("soundBox").hidden = !me;
+    $("waitBox").hidden = !locked;
+    if (!me) return;
+
+    const nameInput = $("nameInput");
+    if (document.activeElement !== nameInput) nameInput.value = s.teams[me].name;
+
+    const mySound = s.teams[me].sound;
+    $("sounds").replaceChildren(...SOUNDS.map((snd) => {
+      const usedBy = TEAMS.find((t) => t !== me && s.teams[t].sound === snd.id);
+      const isMine = locked && mySound === snd.id;
+      const b = el("button", "snd" + (isMine ? " mine" : selSound === snd.id && !locked ? " sel" : ""));
+      b.append(el("span", "ic", snd.icon), el("span", "lb", snd.label),
+        el("span", "tag", isMine ? "🔒 dipilih" : usedBy ? "dipakai " + s.teams[usedBy].name : "▶ dengar"));
+      b.disabled = !!usedBy && !isMine;
+      b.addEventListener("click", () => {
+        playPreview(snd.file);
+        if (!locked && !usedBy) { selSound = snd.id; renderSetup(state); }
+      });
+      return b;
+    }));
+    const cs = $("confirmSound");
+    cs.hidden = locked || !selSound;
+    if (selSound) { const snd = SOUNDS.find((x) => x.id === selSound); cs.textContent = "✔ Konfirmasi: " + snd.icon + " " + snd.label; }
+    $("soundNote").textContent = locked ? "Suara tim sudah dikunci. Kamu masih bisa mendengarkan pilihan lain." : "Ketuk untuk mendengarkan dulu, lalu konfirmasi. Setelah dikonfirmasi tidak bisa diganti.";
+  }
+
+  /* ---------- Layar permainan ---------- */
+  function renderOptions() {
+    const s = state;
+    if (!s) return;
+    const me = you.team;
+    const mineTurn = s.phase === "answering" && s.turn === me;
+    $("optBox").hidden = !(mineTurn || (s.phase === "reveal" && s.options.length));
+    if (!mineTurn && s.phase !== "reveal") return;
+    const ready = mineTurn && !answerSent && Date.now() >= unlockAt;
+    $("optWait").textContent = !mineTurn ? "" : answerSent ? "Jawaban terkirim…" : ready ? "Pilih jawabanmu!" : "Bersiap… tombol jawaban aktif sebentar lagi";
+    $("optList").replaceChildren(...s.options.map((text, i) => {
+      let cls = "optbtn";
+      if (s.eliminated.includes(i)) cls += " elim";
+      if (s.phase === "reveal" && i === s.correct) cls += " right";
+      else if (s.phase === "reveal" && i === s.picked) cls += " wrong";
+      const b = el("button", cls);
+      b.append(el("b", null, "ABCD"[i]), el("span", null, text));
+      b.disabled = !mineTurn || !ready || s.eliminated.includes(i);
+      b.addEventListener("click", () => {
+        if (answerSent || Date.now() < unlockAt) return;
+        answerSent = true;
+        send({ type: "answer", index: i });
+        navigator.vibrate?.(40);
+        renderOptions();
+      });
+      return b;
+    }));
+  }
+  function renderGame(s) {
+    const me = you.team;
+    const badge = $("badge");
+    badge.textContent = me ? "Kamu di " + s.teams[me].name : "Kamu belum punya tim";
+    badge.className = "badge " + (me || "");
+    $("qno").textContent = s.qNum > 0 && s.phase !== "end" ? "SOAL " + s.qNum + " / " + s.total : "";
+    $("question").textContent = s.question || "";
+    const msg = $("msg");
+    msg.textContent = s.message;
+    msg.className = "msg" + (s.phase === "open" || (s.phase === "answering" && s.turn === me) ? " mine" : "");
+
+    const buzz = $("buzz");
+    buzz.className = me || "";
+    buzz.hidden = s.phase === "answering" && s.turn === me;
+    buzz.disabled = !(s.phase === "open" && me);
+    buzz.textContent = "BUZZ!";
+    renderOptions();
+
+    $("board").replaceChildren(...s.ranking.map((r) => {
+      const row = el("div", "row" + (r.team === me ? " me" : ""));
+      row.append(el("span", "rk", ["🥇", "🥈", "🥉"][r.rank - 1] || "#" + r.rank), el("span", "nm", r.name), el("span", "sc", String(r.score)));
+      return row;
+    }));
+    const mine = s.ranking.find((r) => r.team === me);
+    $("myRank").textContent = mine ? "Peringkatmu: #" + mine.rank + " dari " + s.ranking.length + " tim · " + mine.score + " poin" : "";
+    $("endBox").hidden = s.phase !== "end";
+    if (s.phase === "end") {
+      $("finalText").textContent = s.ranking.map((r) => (["🥇", "🥈", "🥉"][r.rank - 1] || r.rank + ".") + " " + r.name + " — " + r.score + " poin").join("\n");
+    }
+  }
+  function render() {
+    if (!state) return;
+    const lobby = state.phase === "lobby";
+    $("setupView").hidden = !lobby;
+    $("gameView").hidden = lobby;
+    if (lobby) renderSetup(state); else renderGame(state);
+  }
+
+  /* ---------- Aksi ---------- */
+  function pressBuzz() {
+    if (buzzSent || !state || state.phase !== "open" || !you.team) return;
+    buzzSent = true;
+    $("buzz").disabled = true;
+    send({ type: "buzz" });
+    navigator.vibrate?.(60);
+  }
+  function init() {
+    $("connectBtn").addEventListener("click", () => connectToHost($("codeInput").value));
+    $("codeInput").addEventListener("keydown", (e) => { if (e.key === "Enter") connectToHost(e.target.value); });
+    $("nameInput").addEventListener("input", () => {
+      clearTimeout(nameTimer);
+      nameTimer = setTimeout(() => send({ type: "name", name: $("nameInput").value }), 350);
+    });
+    $("confirmSound").addEventListener("click", () => {
+      const snd = SOUNDS.find((x) => x.id === selSound);
+      if (!snd) return;
+      if (!confirm("Pilih suara \"" + snd.label + "\"? Setelah dikonfirmasi tidak bisa diganti dan tim juga terkunci.")) return;
+      send({ type: "sound", id: snd.id });
+    });
+    $("buzz").addEventListener("pointerdown", pressBuzz);
+    const fromUrl = new URLSearchParams(location.search).get("code");
+    let saved = "";
+    try { saved = localStorage.getItem(STORE) || ""; } catch { /* abaikan */ }
+    const initial = fromUrl || saved;
+    if (initial) { $("codeInput").value = initial.toUpperCase(); if (fromUrl) connectToHost(initial); }
+  }
+  init();
+})();
+</script>
+</body>
+</html>
