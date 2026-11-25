@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#e0f2fe">
-<title>Game Kuis MHP Kelompok 7</title>
+<meta name="theme-color" content="#bcd9f2">
+<title>Games Kuis Kelompok 7 MHP: Personalisasi dan Pengalaman Pelanggan</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏆</text></svg>">
 <style>
-:root { --bg:#e0f2fe; --card:#ffffff; --line:#cfe6f7; --text:#0f2a43; --muted:#5b7a96; --gold:#0284c7; --good:#16a34a; --bad:#ef4444; }
+:root { --bg:#bcd9f2; --card:#ffffff; --line:#a9cbe8; --text:#0f2a43; --muted:#4a6a88; --gold:#0369a1; --good:#16a34a; --bad:#ef4444; }
 * { box-sizing:border-box; }
 [hidden] { display:none !important; }
-body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif; min-height:100vh; background:radial-gradient(circle at 8% 0%,#bae6fd 0,transparent 42%),radial-gradient(circle at 100% 12%,#dbeefe 0,transparent 45%),linear-gradient(180deg,#eaf6ff 0%,#ffffff 70%) fixed; }
+body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif; min-height:100vh; background:radial-gradient(circle at 8% 0%,#8fc3ee 0,transparent 45%),radial-gradient(circle at 100% 12%,#a8cff0 0,transparent 48%),linear-gradient(180deg,#c3dcf3 0%,#e4eff9 75%) fixed; }
 #playApp { padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom); -webkit-tap-highlight-color:transparent; }
 #playApp * { -webkit-tap-highlight-color:transparent; }
 #playApp .A,#playApp .B,#playApp .C { color:#fff; }
-#playApp .badge:not(.A):not(.B):not(.C) { background:linear-gradient(135deg,#38bdf8,#0284c7); }
-#playApp .card { box-shadow:0 6px 20px rgba(14,116,184,.12); }
-#playApp h1 { color:#0369a1; }
+#playApp .badge:not(.A):not(.B):not(.C) { background:linear-gradient(135deg,#2f8fd9,#0b5c9e); }
+#playApp .card { box-shadow:0 6px 20px rgba(10,70,120,.16); }
+#playApp h1 { color:#0b4f80; }
 @keyframes pulse { 50% { box-shadow:0 0 0 8px #0ea5e944; } }
 #hostApp .app{max-width:1150px; margin:0 auto; padding:16px; display:flex; flex-direction:column; gap:14px;}
 #hostApp header{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;}
@@ -31,12 +31,12 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #hostApp .join .code{font-size:2rem; font-weight:900; letter-spacing:6px; color:var(--gold); line-height:1.1;}
 #hostApp .join .net{font-size:.78rem; color:var(--muted); max-width:170px;}
 #hostApp .card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px;}
-#hostApp input[type=text],#hostApp input[type=number],#hostApp select,#hostApp textarea{font:inherit; padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:#f0f8ff; color:var(--text);}
+#hostApp input[type=text],#hostApp input[type=number],#hostApp select,#hostApp textarea{font:inherit; padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:#e8f2fc; color:var(--text);}
 #hostApp input[type=text]{width:100%;}
-#hostApp button{font:inherit; font-weight:800; border:0; border-radius:14px; padding:12px 20px; cursor:pointer; background:#d6ebfc; color:#0c4a6e; transition:.08s;}
+#hostApp button{font:inherit; font-weight:800; border:0; border-radius:14px; padding:12px 20px; cursor:pointer; background:#cfe2f5; color:#0c4a6e; transition:.08s;}
 #hostApp button:active{transform:scale(.97);}
 #hostApp button:disabled{opacity:.35; cursor:not-allowed;}
-#hostApp .primary{background:linear-gradient(135deg,#38bdf8,#0284c7); color:#fff; font-size:1.1rem;}
+#hostApp .primary{background:linear-gradient(135deg,#2f8fd9,#0b5c9e); color:#fff; font-size:1.1rem;}
 #hostApp .ghost{padding:10px 14px; background:var(--card); border:1px solid var(--line);}
 #hostApp .small{padding:6px 12px; font-size:.85rem; border-radius:10px;}
 #hostApp .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
@@ -47,11 +47,11 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #hostApp .slot.A,#hostApp .team.A{background:linear-gradient(135deg,#e0455f,#a62a42);}
 #hostApp .slot.B,#hostApp .team.B{background:linear-gradient(135deg,#2d8cff,#1a58b8);}
 #hostApp .slot.C,#hostApp .team.C{background:linear-gradient(135deg,#16c784,#0e8a5d);}
-#hostApp .slot.empty{background:#f0f8ff; border:2px dashed var(--line); color:var(--muted);}
+#hostApp .slot.empty{background:#e8f2fc; border:2px dashed var(--line); color:var(--muted);}
 #hostApp .slot .L{font-size:2.4rem; font-weight:900; line-height:1;}
 #hostApp .slot .N{font-weight:800; font-size:1.1rem; word-break:break-word;}
 #hostApp .slot .S{font-size:.85rem; opacity:.95;}
-#hostApp .qcard{background:#f0f8ff; border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;}
+#hostApp .qcard{background:#e8f2fc; border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;}
 #hostApp .qhead{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-weight:800;}
 #hostApp .opt-row{display:flex; gap:8px; align-items:center; margin-top:6px;}
 #hostApp .opt-row .lt{width:22px; font-weight:900; color:var(--gold);}
@@ -61,17 +61,17 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #hostApp .qnum{color:var(--muted); font-weight:700; font-size:.9rem;}
 #hostApp .question{font-size:2rem; font-weight:800; line-height:1.3; margin:8px 0 14px;}
 #hostApp .options{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;}
-#hostApp .option{background:#f0f8ff; border:2px solid var(--line); border-radius:14px; padding:14px; font-size:1.25rem; font-weight:700; display:flex; gap:12px; align-items:center;}
+#hostApp .option{background:#e8f2fc; border:2px solid var(--line); border-radius:14px; padding:14px; font-size:1.25rem; font-weight:700; display:flex; gap:12px; align-items:center;}
 #hostApp .option b{color:var(--gold); font-size:1.5rem;}
 #hostApp .option.elim{opacity:.35; text-decoration:line-through;}
 #hostApp .option.right{border-color:#22c55e; background:#dcfce7;}
 #hostApp .option.wrong{border-color:#ef4444; background:#fee2e2;}
-#hostApp .banner{font-size:1.35rem; font-weight:900; padding:14px 16px; border-radius:14px; background:#f0f8ff; border:2px solid var(--line); margin-bottom:14px; text-align:center;}
+#hostApp .banner{font-size:1.35rem; font-weight:900; padding:14px 16px; border-radius:14px; background:#e8f2fc; border:2px solid var(--line); margin-bottom:14px; text-align:center;}
 #hostApp .banner.open{border-color:var(--gold); color:var(--gold); animation:pulse 1s infinite;}
-#hostApp .banner.ans{border-color:#0284c7;}
+#hostApp .banner.ans{border-color:#0b5c9e;}
 #hostApp .teams{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
 #hostApp .team{border-radius:18px; padding:16px 10px; text-align:center; color:#fff; border:3px solid transparent; position:relative; transition:.15s;}
-#hostApp .team.turn{border-color:#0284c7; box-shadow:0 0 0 6px #0284c744; transform:translateY(-4px);}
+#hostApp .team.turn{border-color:#0b5c9e; box-shadow:0 0 0 6px #0b5c9e44; transform:translateY(-4px);}
 #hostApp .team .rk{font-size:1.4rem; font-weight:900;}
 #hostApp .team .nm{font-weight:800; font-size:1.1rem; word-break:break-word;}
 #hostApp .team .sc{font-size:3rem; font-weight:900; line-height:1.1;}
@@ -83,27 +83,28 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #hostApp h1{font-size:1.25rem;}}
 #hostApp .join .qrbox{width:128px;height:128px;background:#fff;border-radius:10px;padding:3px;cursor:zoom-in;line-height:0;flex:none}
 #hostApp .join .qrbox svg{width:100%;height:100%;display:block}
-#qrBig{position:fixed;inset:0;z-index:50;background:rgba(234,246,255,.98);display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:16px}
+#qrBig{position:fixed;inset:0;z-index:50;background:rgba(196,220,241,.98);display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:16px}
 #qrBig .inner{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 #qrBig .svgwrap{width:min(78vmin,620px);height:min(78vmin,620px);background:#fff;border-radius:16px;padding:6px;line-height:0}
 #qrBig .svgwrap svg{width:100%;height:100%;display:block}
 #qrBig .bigcode{font-size:2.4rem;font-weight:900;letter-spacing:8px;color:var(--gold)}
 #hostApp #musicHint{cursor:pointer}
-#hostApp h1{font-size:clamp(1.35rem,3.4vw,2.1rem);line-height:1.15;letter-spacing:-.3px}
-#hostApp h1 .gt{background:linear-gradient(90deg,#0369a1,#0ea5e9 60%,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
-#hostApp .byline{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:999px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);color:#0369a1;font-weight:800;font-size:.9rem;border:1px solid #bfe3fb}
-#hostApp .card,#hostApp .join{box-shadow:0 8px 28px rgba(14,116,184,.12)}
+#hostApp h1{font-size:clamp(1.15rem,2.6vw,1.7rem);line-height:1.25;letter-spacing:-.2px}
+#hostApp header>div:first-child{flex:1 1 420px;min-width:0}
+#hostApp h1 .gt{background:linear-gradient(90deg,#0a3f69,#0b5c9e 55%,#2f8fd9);-webkit-background-clip:text;background-clip:text;color:transparent}
+#hostApp .byline{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:999px;background:linear-gradient(135deg,#d6e8f8,#b3d4f0);color:#0b4f80;font-weight:800;font-size:.9rem;border:1px solid #9cc4e6}
+#hostApp .card,#hostApp .join{box-shadow:0 8px 28px rgba(10,70,120,.16)}
 #hostApp .card{background:rgba(255,255,255,.92)}
-#hostApp h2{color:#0369a1}
+#hostApp h2{color:#0b4f80}
 #hostApp .roster{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:6px}
-#hostApp .rcol{border-radius:16px;background:#fff;border:1px solid #cfe6f7;overflow:hidden;box-shadow:0 4px 14px rgba(14,116,184,.08)}
+#hostApp .rcol{border-radius:16px;background:#fff;border:1px solid #a9cbe8;overflow:hidden;box-shadow:0 4px 14px rgba(14,116,184,.08)}
 #hostApp .rcol .rh{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;color:#fff;font-weight:900}
 #hostApp .rcol .rh span{font-size:.8rem;font-weight:700;opacity:.95}
 #hostApp .rcol.A .rh{background:linear-gradient(135deg,#e0455f,#a62a42)}
 #hostApp .rcol.B .rh{background:linear-gradient(135deg,#2d8cff,#1a58b8)}
 #hostApp .rcol.C .rh{background:linear-gradient(135deg,#16c784,#0e8a5d)}
 #hostApp .rcol ol{margin:0;padding:10px 14px 12px 36px;columns:1;font-weight:700;color:#0c4a6e;line-height:1.75}
-#hostApp .rcol li::marker{color:#0ea5e9;font-weight:900}
+#hostApp .rcol li::marker{color:#1d7fc4;font-weight:900}
 @media (max-width:760px){#hostApp .roster{grid-template-columns:1fr}}
 #playApp .wrap{max-width:520px; margin:0 auto; display:flex; flex-direction:column; gap:12px; padding:12px 0 24px;}
 #playApp h1{font-size:1.15rem; margin:4px 0 0; text-align:center;}
@@ -113,11 +114,11 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #playApp .dot.on{background:var(--good);}
 #playApp .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px;}
 #playApp .muted{color:var(--muted); font-size:.85rem;}
-#playApp input[type=text]{width:100%; font:inherit; font-size:1.1rem; padding:12px; border-radius:12px; border:1px solid var(--line); background:#f0f8ff; color:var(--text);}
+#playApp input[type=text]{width:100%; font:inherit; font-size:1.1rem; padding:12px; border-radius:12px; border:1px solid var(--line); background:#e8f2fc; color:var(--text);}
 #playApp #codeInput{font-size:1.8rem; letter-spacing:6px; text-align:center; text-transform:uppercase;}
-#playApp button{font:inherit; font-weight:800; border:0; border-radius:14px; cursor:pointer; color:#0c4a6e; background:#d6ebfc;}
+#playApp button{font:inherit; font-weight:800; border:0; border-radius:14px; cursor:pointer; color:#0c4a6e; background:#cfe2f5;}
 #playApp button:disabled{opacity:.35; cursor:not-allowed;}
-#playApp .primary{width:100%; padding:14px; margin-top:10px; font-size:1.05rem; background:linear-gradient(135deg,#38bdf8,#0284c7); color:#fff;}
+#playApp .primary{width:100%; padding:14px; margin-top:10px; font-size:1.05rem; background:linear-gradient(135deg,#2f8fd9,#0b5c9e); color:#fff;}
 #playApp .A{background:linear-gradient(135deg,#e0455f,#a62a42);}
 #playApp .B{background:linear-gradient(135deg,#2d8cff,#1a58b8);}
 #playApp .C{background:linear-gradient(135deg,#16c784,#0e8a5d);}
@@ -125,9 +126,9 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #playApp .pickBtn{padding:12px 4px; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:.75rem;}
 #playApp .pickBtn b{font-size:2rem; line-height:1;}
 #playApp .pickBtn.mine{outline:3px solid #fff;}
-#playApp .pickBtn.taken{background:#f0f8ff; color:var(--muted); border:2px dashed var(--line);}
+#playApp .pickBtn.taken{background:#e8f2fc; color:var(--muted); border:2px dashed var(--line);}
 #playApp .sounds{display:grid; gap:8px;}
-#playApp .snd{display:flex; align-items:center; gap:10px; padding:10px 12px; background:#f0f8ff; border:2px solid var(--line); border-radius:12px; text-align:left; font-weight:700; width:100%;}
+#playApp .snd{display:flex; align-items:center; gap:10px; padding:10px 12px; background:#e8f2fc; border:2px solid var(--line); border-radius:12px; text-align:left; font-weight:700; width:100%;}
 #playApp .snd .ic{font-size:1.5rem;}
 #playApp .snd .lb{flex:1;}
 #playApp .snd .tag{font-size:.75rem; color:var(--muted); font-weight:600;}
@@ -137,20 +138,20 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 #playApp .badge{text-align:center; font-weight:900; font-size:1.15rem; padding:8px; border-radius:12px; color:#fff; word-break:break-word;}
 #playApp .qno{color:var(--muted); font-size:.8rem; font-weight:700; text-align:center;}
 #playApp .question{text-align:center; font-weight:800; font-size:1.15rem; margin:4px 0;}
-#playApp .msg{text-align:center; font-weight:900; font-size:1.1rem; padding:12px; border-radius:14px; background:#f0f8ff; border:2px solid var(--line);}
+#playApp .msg{text-align:center; font-weight:900; font-size:1.1rem; padding:12px; border-radius:14px; background:#e8f2fc; border:2px solid var(--line);}
 #playApp .msg.mine{border-color:var(--gold); color:var(--gold); animation:pulse 1s infinite;}
 #playApp #buzz{min-height:200px; font-size:2.8rem; border-radius:28px; box-shadow:0 10px 0 #0c4a6e55; transition:.06s;}
 #playApp #buzz:active:not(:disabled){transform:translateY(8px); box-shadow:0 2px 0 #0c4a6e55;}
 #playApp #buzz:disabled{opacity:.3; box-shadow:none; filter:grayscale(.6);}
-#playApp .optbtn{display:flex; gap:12px; align-items:center; width:100%; padding:16px; margin-bottom:8px; font-size:1.1rem; text-align:left; background:#f0f8ff; border:2px solid var(--line);}
+#playApp .optbtn{display:flex; gap:12px; align-items:center; width:100%; padding:16px; margin-bottom:8px; font-size:1.1rem; text-align:left; background:#e8f2fc; border:2px solid var(--line);}
 #playApp .optbtn b{color:var(--gold); font-size:1.4rem;}
 #playApp .optbtn.elim{text-decoration:line-through;}
 #playApp .optbtn.right{border-color:var(--good); background:#dcfce7;}
 #playApp .optbtn.wrong{border-color:var(--bad); background:#fee2e2;}
 #playApp .wait{text-align:center; color:var(--gold); font-weight:800; padding:6px;}
 #playApp .lboard{display:flex; flex-direction:column; gap:6px;}
-#playApp .row{display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px; background:#f0f8ff; border:2px solid transparent; font-weight:700;}
-#playApp .row.me{border-color:#0284c7;}
+#playApp .row{display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:12px; background:#e8f2fc; border:2px solid transparent; font-weight:700;}
+#playApp .row.me{border-color:#0b5c9e;}
 #playApp .row .rk{width:36px; font-size:1.2rem;}
 #playApp .row .nm{flex:1; word-break:break-word;}
 #playApp .row .sc{font-size:1.3rem; font-weight:900;}
@@ -169,7 +170,7 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 <div id="hostApp">
 <div class="app">
   <header>
-    <div><h1><span class="em">🏆</span> <span class="gt">Game Kuis MHP Kelompok 7</span></h1><div class="byline">oleh: Dika dan Raizal</div><div class="sub" id="sub"></div></div>
+    <div><h1><span class="em">🏆</span> <span class="gt">Games Kuis Kelompok 7 MHP: Personalisasi dan Pengalaman Pelanggan</span></h1><div class="byline">oleh: Dika dan Raizal</div><div class="sub" id="sub"></div></div>
     <div class="right">
       <div style="max-width:250px"><button class="ghost" id="musicBtn">🎵 Musik: Nyala</button><div class="hint err" id="musicHint" hidden></div></div>
       <div class="join">
@@ -185,7 +186,7 @@ body { margin:0; color:var(--text); font-family:system-ui,"Segoe UI",sans-serif;
 
   <section class="card" id="lobby">
     <h2>👥 Anggota Kelompok</h2>
-    <div class="roster"><div class="rcol A"><div class="rh"><b>Team A</b><span>10 anggota</span></div><ol><li>Aurel</li><li>Verina</li><li>Miko</li><li>Mella</li><li>Rafli</li><li>Cindy</li><li>Nylam</li><li>Tifa</li><li>Nabila</li><li>Acha</li></ol></div><div class="rcol B"><div class="rh"><b>Team B</b><span>10 anggota</span></div><ol><li>Giggsy</li><li>Candra</li><li>Aji</li><li>Vicky</li><li>Risa</li><li>Naufal</li><li>Aldo</li><li>Ryas</li><li>Anton</li><li>Rena</li></ol></div><div class="rcol C"><div class="rh"><b>Team C</b><span>8 anggota</span></div><ol><li>Farah</li><li>Chelsea</li><li>Wildan</li><li>Hilmi</li><li>Denisa</li><li>Zaim</li><li>Zahra</li><li>Fia</li></ol></div></div>
+    <div class="roster"><div class="rcol A"><div class="rh"><b>Team A</b><span>10 anggota</span></div><ol><li>Risa</li><li>Naufal</li><li>Zaim</li><li>Acha</li><li>Miko</li><li>Chelsea</li><li>Mella</li><li>Rafli</li><li>Wildan</li><li>Hilmi</li></ol></div><div class="rcol B"><div class="rh"><b>Team B</b><span>10 anggota</span></div><ol><li>Tifa</li><li>Rena</li><li>Anton</li><li>Verina</li><li>Candra</li><li>Zahra</li><li>Vicky</li><li>Aurel</li><li>Denisa</li><li>Farah</li></ol></div><div class="rcol C"><div class="rh"><b>Team C</b><span>7 anggota</span></div><ol><li>Nylam</li><li>Giggsy</li><li>Aldo</li><li>Aji</li><li>Nabila</li><li>Ryas</li><li>Cindy</li></ol></div></div>
     <h2>1. Tim peserta</h2>
     <p class="muted" style="margin-top:0">Peserta scan QR di layar ini (atau buka alamat yang tertera), memilih tim, mengedit nama tim, lalu memilih dan mengunci suara. Satu tim hanya boleh 1 HP.</p>
     <div class="slots" id="slots"></div>
@@ -725,6 +726,7 @@ function createEngine(rng) {
   if (MODE !== "host") return;
   const PREFIX = "kuis3tim-";
   const STORE = "k3_host_v3";
+  const ALIVE_KEY = "k3_alive";
   const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   const CLIP_MS = 4000;            // suara tim dipotong agar tidak terlalu panjang
   const ANSWER_DELAY_MS = 1200;    // jeda sebelum tim boleh memilih jawaban (anti kepencet dua kali)
@@ -946,6 +948,21 @@ function createEngine(rng) {
       if (r.ok) { playClip(r.correct ? SFX.good : SFX.bad, CLIP_MS); update(); }
     }
   }
+  /* HP tim menutup tab / terputus: di lobby, slot timnya dikosongkan otomatis supaya tidak macet. */
+  const RELEASE_MS = 8000;
+  function dropConn(conn) {
+    const info = conns.get(conn), gone = info && info.pid;
+    conns.delete(conn); update();
+    if (!gone) return;
+    setTimeout(() => {
+      if (E.s.phase !== "lobby") return;           // saat permainan berjalan, tim dipertahankan
+      let back = false;
+      conns.forEach((i, c) => { if (i.pid === gone && c.open) back = true; });
+      if (back) return;                              // HP yang sama sudah tersambung lagi (refresh)
+      const t = E.teamOf(gone);
+      if (t) { E.release(t); update(); }
+    }, RELEASE_MS);
+  }
   let idTries = 0;
   function startPeer() {
     try { if (peer) peer.destroy(); } catch { /* abaikan */ }
@@ -954,8 +971,8 @@ function createEngine(rng) {
     peer.on("connection", (conn) => {
       conns.set(conn, { pid: null });
       conn.on("data", (m) => onMessage(conn, m));
-      conn.on("close", () => { conns.delete(conn); update(); });
-      conn.on("error", () => { conns.delete(conn); update(); });
+      conn.on("close", () => dropConn(conn));
+      conn.on("error", () => dropConn(conn));
       conn.on("open", () => update());
     });
     peer.on("error", (err) => {
@@ -1200,7 +1217,13 @@ function createEngine(rng) {
     $("count").value = countTouched && saved.count ? saved.count : bank.length;
     $("shuffle").checked = !!saved.shuffle;
     $("mode").value = saved.mode === "rebutan" ? "rebutan" : "acak";
-    if (saved.snap) E.restore(saved.snap);
+    let stale = true;
+    try { const t = parseInt(localStorage.getItem(ALIVE_KEY) || "0", 10); stale = !t || Date.now() - t > 8000; } catch { /* abaikan */ }
+    if (saved.snap && !stale) E.restore(saved.snap);   // refresh cepat: lanjut; tab sempat ditutup: kembali ke beranda
+    const beat = () => { try { localStorage.setItem(ALIVE_KEY, String(Date.now())); } catch { /* abaikan */ } };
+    beat(); setInterval(beat, 2000);
+    window.addEventListener("pagehide", beat);
+    document.addEventListener("visibilitychange", beat);
     bind();
     bindQr();
     renderEditor();
@@ -1229,6 +1252,8 @@ function createEngine(rng) {
   const $ = (id) => document.getElementById(id);
 
   let peer = null, conn = null, roomCode = "", retryTimer = null;
+  let lostSince = 0, connectedOnce = false, loggedOut = false;
+  const LOGOUT_MS = 25000;
   let state = null, you = { team: null };
   let selSound = null, nameTimer = null, toastTimer = null, previewTimer = null, previewAudio = null;
   let buzzSent = false, answerSent = false, turnKey = "", unlockAt = 0, tick = null;
@@ -1262,6 +1287,7 @@ function createEngine(rng) {
   function connectToHost(raw) {
     roomCode = String(raw || "").toUpperCase().trim();
     if (roomCode.length < 5) return setStatus(false, "Kode harus 5 karakter");
+    loggedOut = false;
     setStatus(false, "Menghubungkan…");
     clearTimeout(retryTimer);
     loadPeerLib(doConnect, () => setStatus(false, "Pustaka jaringan gagal dimuat. Cek internet…"));
@@ -1271,25 +1297,46 @@ function createEngine(rng) {
     peer = new Peer();
     peer.on("open", () => {
       conn = peer.connect(PREFIX + roomCode, { reliable: true });
+      const c0 = conn;
+      setTimeout(() => { if (conn === c0 && !c0.open && !loggedOut) onLost(); }, 12000);
       conn.on("open", onOpen);
       conn.on("data", onData);
       conn.on("close", onLost);
       conn.on("error", onLost);
     });
     peer.on("error", (err) => {
+      if (loggedOut) return;
+      if (connectedOnce && !lostSince) lostSince = Date.now();
       setStatus(false, err.type === "peer-unavailable" ? "Kode tidak ditemukan. Cek layar utama." : "Gangguan: " + err.type);
       scheduleRetry();
     });
   }
   function onOpen() {
+    lostSince = 0; connectedOnce = true; loggedOut = false;
     setStatus(true, "Terhubung ke ruangan " + roomCode);
     $("connectView").hidden = true;
     send({ type: "hello", pid });
     try { localStorage.setItem(STORE, roomCode); } catch { /* abaikan */ }
     try { navigator.wakeLock?.request("screen").catch(() => {}); } catch { /* tidak wajib */ }
   }
-  function onLost() { setStatus(false, "Terputus. Mencoba lagi…"); scheduleRetry(); }
-  function scheduleRetry() { clearTimeout(retryTimer); retryTimer = setTimeout(() => connectToHost(roomCode), RETRY_MS); }
+  function onLost() {
+    if (loggedOut) return;
+    if (!lostSince) lostSince = Date.now();
+    setStatus(false, "Terputus. Mencoba lagi…");
+    scheduleRetry();
+  }
+  function logout() {
+    loggedOut = true; clearTimeout(retryTimer); clearInterval(tick);
+    try { if (conn) conn.close(); } catch { /* abaikan */ }
+    try { if (peer) peer.destroy(); } catch { /* abaikan */ }
+    conn = null; peer = null; state = null; you = { team: null }; selSound = null; connectedOnce = false; lostSince = 0;
+    $("setupView").hidden = true; $("gameView").hidden = true; $("connectView").hidden = false;
+    setStatus(false, "Keluar otomatis: layar utama tidak terhubung. Masukkan kode lagi.");
+  }
+  function scheduleRetry() {
+    clearTimeout(retryTimer);
+    if (lostSince && Date.now() - lostSince > LOGOUT_MS) { logout(); return; }
+    retryTimer = setTimeout(() => connectToHost(roomCode), RETRY_MS); }
 
   /* ---------- Pesan dari host ---------- */
   function onData(m) {
@@ -1465,7 +1512,7 @@ function createEngine(rng) {
     const initial = fromUrl || saved;
     if (initial) { $("codeInput").value = initial.toUpperCase(); if (fromUrl) connectToHost(initial); }
     document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible" && roomCode && !(conn && conn.open)) connectToHost(roomCode);
+      if (document.visibilityState === "visible" && roomCode && !loggedOut && !(conn && conn.open)) connectToHost(roomCode);
     });
   }
   init();
